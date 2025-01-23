@@ -11,7 +11,13 @@ public class Unit : MonoBehaviour
     {
         targetPosition = transform.position;
     }
-    
+
+    private void Start()
+    {
+        GridPosition gridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
+        LevelGrid.Instance.SetUnitAtGridPosition(gridPosition, this);
+    }
+
     public void Move(Vector3 targetPosition)
     {
         this.targetPosition = targetPosition;
