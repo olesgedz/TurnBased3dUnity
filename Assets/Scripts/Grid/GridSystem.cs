@@ -1,3 +1,4 @@
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class GridSystem
@@ -19,7 +20,7 @@ public class GridSystem
             for (int z = 0; z < _height; z++)
             {
                 GridPosition gridPosition = new GridPosition(x, z);
-                _gridObjectArray[x, z] = new GridObject(this, gridPosition);
+                _gridObjectArray[x, z] = new GridObject(this, gridPosition); 
             }
         }
     }

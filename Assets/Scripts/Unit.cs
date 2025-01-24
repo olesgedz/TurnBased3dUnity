@@ -5,7 +5,7 @@ public class Unit : MonoBehaviour
 {
     private Vector3 targetPosition;
     [SerializeField] private Animator animator;
-    
+    private GridPosition gridPosition;
     
     private void Awake()
     {
@@ -14,11 +14,11 @@ public class Unit : MonoBehaviour
 
     private void Start()
     {
-        GridPosition gridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
+        gridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
         LevelGrid.Instance.SetUnitAtGridPosition(gridPosition, this);
     }
 
-    public void Move(Vector3 targetPosition)
+    public void Move(GridPosition targetPosition)
     {
         this.targetPosition = targetPosition;
     }
@@ -41,6 +41,13 @@ public class Unit : MonoBehaviour
         else
         {
             animator.SetBool("isWalking", false);
+        }
+        GridPosition newGridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
+        if (newGridPosition != gridPosition)
+        {
+            LevelGrid.Instance.ClearUnitAtGridPosition(gridPosition);
+            gridPosition = newGridPosition;
+            LevelGrid.Instance.SetUnitAtGridPosition(gridPosition, this);
         }
     }
 }

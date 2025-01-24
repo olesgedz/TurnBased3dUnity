@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GridObject : MonoBehaviour 
+public class GridObject
 {
     private GridSystem _gridSystem;
     private GridPosition _gridPosition;
@@ -18,7 +18,7 @@ public class GridObject : MonoBehaviour
     
     public override string ToString()
     {
-        return _gridPosition.ToString();
+        return _gridPosition.ToString() + "\n" + _unit;
     }
     
     public void SetUnit(Unit unit)
