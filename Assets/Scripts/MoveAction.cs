@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class MoveAction : MonoBehaviour
 {
-    private Vector3 targetPosition;
     [SerializeField] private Animator animator;
     [SerializeField] private int maxMoveDistance = 4;
-    private Unit unit;
     
+    private Unit unit;
+    private Vector3 targetPosition;
+
     
     private void Awake()
     {
@@ -51,11 +52,12 @@ public class MoveAction : MonoBehaviour
             for (int z = -maxMoveDistance; z <= maxMoveDistance; z++)
             {
                 GridPosition gridPosition = new GridPosition(x, z);
-                Vector3 worldPosition = LevelGrid.Instance.gridSystem.GetWorldPosition(gridPosition);
-                if (Vector3.Distance(transform.position, worldPosition) <= maxMoveDistance)
-                {
-                    validGridPositionList.Add(gridPosition);
-                }
+                GridPosition testGridPosition = gridPosition + unitGridPosition;
+                Debug.LogError("LOg " + testGridPosition);
+                // if (Vector3.Distance(transform.position, worldPosition) <= maxMoveDistance)
+                // {
+                //     validGridPositionList.Add(gridPosition);
+                // }
             }
         }
 
